@@ -10,51 +10,101 @@ namespace JogoDosDadosConsoleApp
     {
         public static int PosicaoUsuario(int PosicaoU, int dado)
         {
-            PosicaoU += dado;
-            if (PosicaoU == 10)
+            while (true)
             {
-                PosicaoU += 3;
-                Console.WriteLine("Voce achou um taxi e andou mais 3 casas");
-            }
-            else if (PosicaoU == 15)
-            {
-                PosicaoU -= 2;
-                Console.WriteLine("Voce foi roubado e voltou 2 casas");
-            }
-            else if (PosicaoU == 20)
-            {
-                PosicaoU += 2;
-                Console.WriteLine("Voce pegou uma carona e andou mais 2 casas");
-            }
-            else if (PosicaoU == 25)
-            {
-                PosicaoU -= 3;
-                Console.WriteLine("Voce foi sequestrado e voltou 3 casas");
+                PosicaoU += dado;
+                if (PosicaoU == 5)
+                {
+                    PosicaoU += 3;
+                    Console.WriteLine("Voce achou um taxi e andou mais 3 casas");
+                }
+                else if (PosicaoU == 7)
+                {
+                    PosicaoU -= 2;
+                    Console.WriteLine("Voce foi roubado e voltou 2 casas");
+                }
+                else if (PosicaoU == 10)
+                {
+                    PosicaoU += 2;
+                    Console.WriteLine("Voce pegou uma carona e andou mais 2 casas");
+                }
+                else if (PosicaoU == 13)
+                {
+                    PosicaoU -= 3;
+                    Console.WriteLine("Voce foi sequestrado e voltou 3 casas");
+                }
+                else if (PosicaoU == 15)
+                {
+                    PosicaoU += 2;
+                    Console.WriteLine("Voce pegou uma carona e andou mais 2 casas");
+                }else if(PosicaoU == 20)
+                {
+                    PosicaoU -= 2;
+                    Console.WriteLine("Voce foi roubado e voltou 2 casas");
+                }
+
+                if (dado == 6)
+                {
+                    Console.WriteLine("Por ter tirado 6, podera jogar de novo!!\n");
+                    Program.DigitarEnter();
+                    dado = Program.GerarNumero();
+                    Program.MenuGirar(dado);
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
             }
             return PosicaoU;
         }
         public static int PosicaoRobo(int PosicaoC, int dado)
         {
-            PosicaoC += dado;
-            if (PosicaoC == 10)
+            while (true)
             {
-                PosicaoC -= 3;
-                Console.WriteLine("O robo foi sequestrado e voltou 3 casas");
-            }
-            else if (PosicaoC == 15)
-            {
-                PosicaoC += 2;
-                Console.WriteLine("O robo pegou uma carona e andou mais 2 casas");
-            }
-            else if (PosicaoC == 20)
-            {
-                PosicaoC -= 2;
-                Console.WriteLine("O robo foi roubado e voltou 2 casas");
-            }
-            else if (PosicaoC == 25)
-            {
-                PosicaoC += 3;
-                Console.WriteLine("O robo achou um taxi e andou mais 3 casas");
+                PosicaoC += dado;
+                if (PosicaoC == 5)
+                {
+                    PosicaoC += 3;
+                    Console.WriteLine("O robo achou um taxi e andou mais 3 casas");
+                }
+                else if (PosicaoC == 7)
+                {
+                    PosicaoC -= 2;
+                    Console.WriteLine("O robo foi roubado e voltou 2 casas");
+                }
+                else if (PosicaoC == 10)
+                {
+                    PosicaoC += 2;
+                    Console.WriteLine("O robo pegou uma carona e andou mais 2 casas");
+                }
+                else if (PosicaoC == 13)
+                {
+                    PosicaoC -= 3;
+                    Console.WriteLine("O robo foi sequestrado e voltou 3 casas");
+                }
+                else if (PosicaoC == 15)
+                {
+                    PosicaoC += 2;
+                    Console.WriteLine("O robo pegou uma carona e andou mais 2 casas");
+                }
+                else if (PosicaoC == 20)
+                {
+                    PosicaoC -= 2;
+                }
+
+                if (dado == 6)
+                {
+                    Console.WriteLine("Por ter tirado 6, o robo jogara de novo!!\n");
+                    Program.DigitarEnter();
+                    dado = Program.GerarNumero();
+                    Program.MenuGirar(dado);
+                    continue;
+                }
+                else
+                {
+                    break;
+                }
             }
             return PosicaoC;
         }
