@@ -8,7 +8,9 @@ namespace JogoDosDadosConsoleApp
 {
     internal class CalcularPosicoes
     {
-        public static int PosicaoUsuario(int PosicaoU, int dado)
+        public int PosicaoU { get; set; }
+        public int PosicaoC { get; set; }
+        public void PosicaoUsuario(int dado)
         {
             while (true)
             {
@@ -56,9 +58,8 @@ namespace JogoDosDadosConsoleApp
                     break;
                 }
             }
-            return PosicaoU;
         }
-        public static int PosicaoRobo(int PosicaoC, int dado)
+        public void PosicaoRobo(int dado)
         {
             while (true)
             {
@@ -106,7 +107,6 @@ namespace JogoDosDadosConsoleApp
                     break;
                 }
             }
-            return PosicaoC;
         }
     }
 }

@@ -5,8 +5,8 @@
         static void Main(string[] args)
         {
             string resposta = "S";
-            int PosicaoU = 0, PosicaoC = 0;
             bool acabou = false;
+            CalcularPosicoes CP = new CalcularPosicoes();
             while (true) {
                 if (resposta == "N")
                 {
@@ -14,8 +14,8 @@
                 }
                 else
                 {
-                    PosicaoU = 0;
-                    PosicaoC = 0;
+                    CP.PosicaoC = 0;
+                    CP.PosicaoU = 0;
                     acabou = false;
                     while (true)
                     {
@@ -25,20 +25,20 @@
                         int dado = GerarNumero();
 
                         MenuGirar(dado);
-                        PosicaoU = CalcularPosicoes.PosicaoUsuario(PosicaoU, dado);
+                        CP.PosicaoUsuario(dado);
 
                         DigitarEnter();
                         dado = GerarNumero();
 
                         MenuGirar(dado);
-                        PosicaoC = CalcularPosicoes.PosicaoRobo(PosicaoC, dado);
+                        CP.PosicaoRobo(dado);
                         
-                        MostarVencedor(PosicaoU, PosicaoC);
+                        MostarVencedor(CP);
 
                         Console.Write("Deseja continuar? (S/N): ");
                         resposta = Console.ReadLine()!.ToUpper();
 
-                        acabou = AcabarJogo(acabou, PosicaoC, PosicaoU);
+                        AcabarJogo(ref acabou, CP);
                         if (acabou == true || resposta == "N")
                         {
                             break;
@@ -57,8 +57,7 @@
         public static int GerarNumero()
         {
             Random numero = new Random();
-            int dado = numero.Next(1, 7);
-            return dado;
+            return numero.Next(1, 7);
         }
         public static void MenuGirar(int dado)
         {
@@ -71,16 +70,16 @@
             Console.Write("\nDigite ENTER para girar o dado");
             Console.ReadLine();
         }
-        static void MostarVencedor(int PosicaoU, int PosicaoC)
+        public static void MostarVencedor(CalcularPosicoes CP)
         {
-            if (PosicaoC >= 30 && PosicaoU >= 30)
+            if (CP.PosicaoC >= 30 && CP.PosicaoU >= 30)
             {
                 Console.WriteLine("\nVoce o robo passaram da chegada!!");
-                if (PosicaoC > PosicaoU)
+                if (CP.PosicaoC > CP.PosicaoU)
                 {
                     Console.WriteLine("Mas o robo foi mais longe e venceu!!");
                 }
-                else if(PosicaoU > PosicaoC)
+                else if(CP.PosicaoU > CP.PosicaoC)
                 {
                     Console.WriteLine("Mas voce foi mais longe e venceu!!");
                 }
@@ -88,34 +87,34 @@
                 {
                     Console.WriteLine("E ficaram na mesma posicao!!!");
                 }
-                MostrarPosicao(PosicaoC, PosicaoU);
+                MostrarPosicao(CP);
             }
-            else if (PosicaoU >= 30)
+            else if (CP.PosicaoU >= 30)
             {
                 Console.WriteLine("\nParabens, você venceu!!");
-                MostrarPosicao(PosicaoC, PosicaoU);
+                MostrarPosicao(CP);
                 return;
             }
-            else if (PosicaoC >= 30)
+            else if (CP.PosicaoC >= 30)
             {
                 Console.WriteLine("\nO robo venceu!!");
-                MostrarPosicao(PosicaoC, PosicaoU);
+                MostrarPosicao(CP);
                 return;
             }
             else
             {
-                MostrarPosicao(PosicaoC, PosicaoU);
+                MostrarPosicao(CP);
             }
         }
-        static void MostrarPosicao(int PosicaoC, int PosicaoU)
+        static void MostrarPosicao(CalcularPosicoes CP)
         {
 
-            Console.WriteLine($"\nO robo esta na posicao: {PosicaoC}");
-            Console.WriteLine($"Você está na posição: {PosicaoU}\n");
+            Console.WriteLine($"\nO robo esta na posicao: {CP.PosicaoC}");
+            Console.WriteLine($"Você está na posição: {CP.PosicaoU}\n");
         }
-        static bool AcabarJogo(bool acabou, int PosicaoC, int PosicaoU)
+        static bool AcabarJogo(ref bool acabou, CalcularPosicoes CP)
         {
-            if (PosicaoC >= 30 || PosicaoU >= 30)
+            if (CP.PosicaoC >= 30 || CP.PosicaoU >= 30)
             {
                 acabou = true;
             }
